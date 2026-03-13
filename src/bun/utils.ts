@@ -24,6 +24,7 @@ export async function getOldSettings() {
 
 export async function getStreamMode(): Promise<boolean> {
   if (!(await configFile.exists())) {
+    mkdirSync(join(Utils.paths.appData, "storyforge"), { recursive: true });
     const oldSettings = await getOldSettings();
     if (oldSettings) {
       await configFile.write(
